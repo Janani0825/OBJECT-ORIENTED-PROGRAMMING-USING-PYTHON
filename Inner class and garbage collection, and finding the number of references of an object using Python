@@ -1,0 +1,46 @@
+import gc
+class Student:
+    def __init__(self, name):
+        self.name = name
+        self.marks = []
+        print(f"Student {self.name} created.")
+
+    def add_mark(self, mark):
+        self.marks.append(mark)
+
+    def calculate_average(self):
+        if not self.marks:
+            return 0
+        return sum(self.marks) / len(self.marks)
+
+    def __del__(self):
+        print(f"Student {self.name} is being deleted.")
+
+    class MarkList:
+        def __init__(self, student):
+            self.student = student
+            print(f"MarkList for {self.student.name} created.")
+
+        def add_mark(self, mark):
+            self.student.add_mark(mark)
+
+        def __del__(self):
+            print(f"MarkList for {self.student.name} is being deleted.")
+
+name = input("Enter the student's name: ")
+student = Student(name)
+mark_list = student.MarkList(student)
+
+
+for i in range(5):
+    mark = float(input(f"Enter mark {i + 1}: "))
+    mark_list.add_mark(mark)
+
+average = student.calculate_average()
+print(f"The average mark for {student.name} is {average:.2f}")
+
+print(f"Number of references to student object: {len(gc.get_referrers(student))}")
+
+del mark_list
+del student
+gc.collect()
