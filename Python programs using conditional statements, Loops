@@ -1,0 +1,149 @@
+while True:
+   print("MENU")
+   print("-----")
+   print("1.minimum of three numbers\n2.odd or even\n3.stress of a material\n4.given length from a triangle or not\n5.marks and grade of a student\n6.electricity bill\n7.exit")
+   choice=int(input("enter your choice: "))
+   if(choice==1):
+      a=int(input("enter num a : "))
+      b=int(input("enter num b : "))
+      c=int(input("enter num c : "))
+      if a<b and a<c:
+         print("a is minimum")
+      elif b<a and b<c:
+         print("b is minimum")
+      else:
+         print("c is minimum")
+
+   elif(choice==2):
+       n=int(input("enter a number:"))
+       if(n%2==0):
+          print("The given number is even number")
+       else:
+          print("The given number is odd number")
+
+   elif(choice==3):
+      force=int(input("enter a force"))
+      area=int(input("enter a area"))
+      stress=(force/area)
+      if(stress>10):
+         print("stress is greater than 10")
+      else:
+         print("stress is not greater than 10")
+
+   elif(choice==4):
+      x=int(input("enter side1:"))
+      y=int(input("enter side2:"))
+      z=int(input("enter side3:"))
+      if(x+y)>z or (x+y)>y or (z+y)>x:
+        print("the given sides form a triangle")
+      else:
+        print("the given sides not form a triangle")
+
+   elif(choice==5):
+      a=int(input("enter a maths mark:"))
+      b=int(input("enter a physics mark:"))
+      c=int(input("enter a chemitry mark:"))
+      sum=a+b+c
+      percentage=(sum)/300*100
+      if percentage>=90:
+         print("grade o")
+      elif percentage>=80 and percentage<=89:
+         print("grade A+")
+      elif percentage>=70 and percentage<=79:
+         print("grade A")
+      elif percentage>=60 and percentage<=69:
+         print("grade B+")
+      elif percentage>=55 and percentage<=59:
+         print("grade B")
+      elif percentage>=50 and percentage<=54:
+         print("grade C")
+      else:
+         print("fail")
+
+   elif(choice==6):
+      print("elecricity bill")
+      u=int(input("enter the amount of kwh unit consumed:"))
+      if u<=100:
+         bill=u*10
+      elif u<=200:
+         bill=(100*10)+((u-100)*15)
+      elif u<=300:
+         bill=(100*10)+(100*15)+((u-200)*20)
+      else:
+         bill=(100*10)+(100*15)+(100*20)+((u-300)*25)
+      print("the electricity bill is: ",bill)
+   else:
+        print("The program is exit")
+        break
+------------------------------------------------------------------------------------------------------------
+while True:
+   print("menu")
+   print("-----")
+   print("1.palindrome\n2.pattern\n3.armstrong\n4.series\n5.primenumber\n6.factorial\n7.exit")
+   choice=int(input("\nenter your choice:"))
+   if(choice==1):
+      num=int(input("enter a number"))
+      temp=num
+      rev=0
+      while temp!=0:
+         rev=rev*10
+         rev=rev+(temp%10)
+         temp=temp//10
+      if rev==num:
+         print(num,"the given number is palindrome")
+      else:
+         print(num,"the number is not palindrome")
+
+   elif(choice==2):
+      n=int(input("enter a no of rows:"))
+      for i in range(n):
+         print(" "*(n-i-1)+"*"*(2*i+1))
+      for i in range(n-2,-1,-1):
+         print(" "*(n-i-1)+"*"*(2*i+1))
+
+   elif(choice==3):
+      num=int(input("enter a number:"))
+      order=len(str(num))
+      sum=0
+      temp=num
+      while temp>0:
+         digit=temp%10
+         sum+=digit**order
+         temp//=10
+      if num==sum:
+         print(num,"is an armstrong number")
+      else:
+         print(num,"is not an armstrong number")
+
+   elif(choice==4):
+      for num in range(1,51):
+         if num%3==0 and num%5==0:
+            print("fizzbuzz")
+            continue
+         elif num%3==0:
+            print("fizz")
+            continue
+         elif num%5==0:
+            print("buzz")
+            continue
+         else:
+            print(num)
+
+   elif(choice==5):
+      num=int(input("enter a number:"))
+      if(num>1):
+         for i in range(2,num):
+            if num%i==0:
+               print(num,"not a prime number")
+               break
+            else:
+               print(num,"is a prime number")
+   elif(choice==6):
+      for num in range(1,11):
+         factorial=1
+         for i in range(1,num+1):factorial*=i
+         print("the factorial is:",num,"= ",factorial)
+   else:
+       print("The program is exit")
+       break
+
