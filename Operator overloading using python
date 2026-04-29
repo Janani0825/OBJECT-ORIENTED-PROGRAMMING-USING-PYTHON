@@ -1,0 +1,101 @@
+class Shape:
+    def area(self, *args):
+        if len(args) == 1:
+            r = args[0]
+            print("Area of circle:", 3.14 * r * r)
+        elif len(args) == 2:
+            l, b = args
+            print("Area of rectangle:", l * b)
+        elif len(args) == 3:
+            a, b, c = args
+            s = (a + b + c) / 2
+            area = (s * (s - a) * (s - b) * (s - c)) ** 0.5
+            print("Area of triangle:", area)
+        else:
+            print("INVALID NUMBER OF ARGUMENTS")
+s = Shape()
+s.area(5)
+s.area(6, 5)
+s.area(3, 4, 5)
+
+---------------------------------------------------------------------------
+class Complex_num:
+   def __init__(self,real,imag):
+      self.real=real
+      self.imag=imag
+   def __add__(self,other):
+      real1=self.real+other.real
+      imag1=self.imag+other.imag
+      return complex(real1,imag1)
+   def __sub__(self,other):
+      real2=self.real-other.real
+      imag2=self.imag-other.imag
+      return complex(real2,imag2)
+   def __mul__(self,other):
+      real3=(self.real*other.real)-(self.imag*other.imag)
+      imag3=(self.real*other.imag)+(self.imag*other.real)
+      return complex(real3,imag3)
+n=int(input("Enter the limit:"))
+for i in range(n):
+   real=int(input("Enter the real part:"))
+   imag=int(input("Enter the imaginary part:"))
+   a=Complex_num(real,imag)
+   var_real=int(input("Enter the variable real part:"))
+   var_imag=int(input("Enter the variable imaginary part:"))
+   b=Complex_num(var_real,var_imag)
+   print("Given number1:",complex(real,imag))
+   print("Given number2:",complex(var_real,var_imag))
+   print("Addition:",a+b)
+   print("Subtraction:",a-b)
+   print("Multiplication:",a*b)
+-----------------------------------------------------------------------
+class Book:
+   def __init__(self,title,author,price):
+      self.title=title
+      self.author=author
+      self.price=price
+   def display_book(self):
+      print("Book title:",self.title)
+      print("Book author:",self.author)
+      print("Book price:",self.price)
+   def __add__(self,other):
+      return (self.price+other.price)
+p=[]
+n=int(input("Enter the limit:"))
+for i in range(n):
+   book=input("Enter the book title:")
+   author=input("Enter the book author:")
+   price=int(input("Enter the book price:Rs"))
+   var_book=input("Enter the other book title:")
+   var_author=input("Enter the other book author:")
+   var_price=int(input("Enter the other book price:Rs"))
+   b1=Book(book,author,price)
+   b2=Book(var_book,var_author,var_price)
+   b=b1+b2
+   p.append(b)
+from functools import *
+l=reduce(lambda a,b:a+b,p)
+print("Total price:Rs",l)
+--------------------------------------------------------------------------------
+class Student:
+    def __init__(self):
+        self.name = ""
+        self.age = 0
+        self.grade = ""
+    def get_input(self):
+        self.name = input("Enter student's name: ")
+        self.age = int(input("Enter student's age: "))
+        self.grade = input("Enter student's grade: ")
+    def display(self):
+        print(f"Name: {self.name}")
+        print(f"Age: {self.age}")
+        print(f"Grade: {self.grade}")
+class CustomStudent(Student):
+    def get_input(self):
+        print("Please provide the student details.")
+        super().get_input()
+student = CustomStudent()
+student.get_input()
+student.display()
+
+------------------------------------------------------------------------------------------
