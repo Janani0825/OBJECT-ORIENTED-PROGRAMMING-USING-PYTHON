@@ -1,0 +1,212 @@
+class Employee:
+   def __init__(self,name,emid,age,designation,sy):
+      self.name=name
+      self.emid=emid
+      self.age=age
+      self.designation=designation
+      self.sy=sy
+   def display_emp(self):
+      print("*"*20)
+      print(f"The employee name is {self.name}")
+      print(f"The age is {self.age}")
+      print(f"The id is {self.emid}")
+      print(f"The designation is {self.designation}")
+      self.sy.display_salary()
+class Salary:
+   def __init__(self,bp):
+      self.bp=bp
+      self.totalsal=self.calculate()
+   def calculate(self):
+      self.hra=0.1*self.bp
+      self.da=0.2*self.bp
+      self.pf=0.05*self.bp
+      return(self.bp+self.hra+self.da-self.pf)
+   def display_salary(self):
+      print(f"the basic pay is {self.bp}")
+      print(f"the salary is {self.totalsal}")
+employee=[]
+n=int(input("enter the no of employee"))
+for i in range(n):
+   print("the employee details")
+   name=input(f"enter the name of {i+1} employee")
+   emid=input("enter the id")
+   age=input("enter the age")
+   designation=input("enter the designation")
+   bp=int(input("enter the basic pay"))
+   sy=Salary(bp)
+   e1=Employee(name,emid,age,designation,sy)
+   employee.append(e1)
+for e1 in employee:
+   e1.display_emp()
+-------------------------------------------------------------------------------------
+class Customer:
+   def __init__(self,account_no,accountholder_name,mobno):
+      self.account_no=account_no
+      self.accountholder_name=accountholder_name
+      self.mobno=mobno
+   def display_customer(self):
+      print("Account number :",self.account_no)
+      print("Account holder name :",self.accountholder_name)
+      print("Account holder's mobile number: ",self.mobno)
+class Transaction(Customer):
+   def __init__(self,account_no,accountholder_name,mobno,balance):
+      super().__init__(account_no,accountholder_name,mobno)
+      self.balance=balance
+      self.deposit=self.depositcalculate()
+      self.withdraw=self.withdrawcalculate()
+      self.check_balance=self.check_balance()
+   def depositcalculate(self):
+      self.amount=float(input("Enter the amount to be deposited:"))
+      if self.amount<=0:
+          print("Deposit amount should be positive")
+      else:
+          self.balance+=self.amount
+          print("RS",self.amount)
+          print("Deposited successfully")
+          print("NEW BALANCE : RS",self.balance)
+   def withdrawcalculate(self):
+       self.amount1=float(input("Enter the amount to be withdrawn:"))
+       if self.amount1>self.balance:
+           print("INSUFFICIENT FUND")
+       else:
+           self.balance-=self.amount1
+           print("RS:",self.amount)
+           print("Withdrawn succesfully")
+           print("NEW BALANCE : RS",self.balance)
+   def check_balance(self):
+      print("Account balance: RS",self.balance)
+   def display_transaction(self):
+      print("Account balance:",self.balance)
+
+n=int(input("Enter number of accounts to be created:"))
+accounts=[]
+for i in range(n):
+   print(">>>>>>>>BANK DETAILS<<<<<<<<<<<<<")
+   account_no=int(input("Enter the account number:"))
+   accountholder_name=input("Enter the account holder's name:")
+   mobno=int(input("Enter mobile number :"))
+   balance=float(input("Enter balance:"))
+   b1=Transaction(account_no,accountholder_name,mobno,balance)
+   accounts.append(b1)
+for b1 in accounts:
+   print("----------------------------------")
+   b1.display_customer()
+   b1.display_transaction()
+------------------------------------------------------------------------------------------
+class Student:
+   def __init__(self,name,rollno,department,cls,mark):
+      self.name=name
+      self.rollno=rollno
+      self.department=department
+      self.cls=cls
+      self.mark=mark
+   def display(self):
+      print("*"*20)
+      print(f"the name is {self.name}")
+      print(f"the rollno is {self.rollno}")
+      print(f"the department is {self.department}")
+      print(f"the class {self.cls}")
+      self.mark.display_res()
+class Result:
+   def __init__(self,mark):
+      self.mark=mark
+      self.avg = self.calculate()
+      self.grade =self.grade()
+   def calculate(self):
+      return (sum(self.mark)/len(self.mark))
+   def grade(self):
+      if self.avg>90: return "A"
+      elif self.avg >80 and self.avg<=90:return "B"
+      elif self.avg>70 and self.avg<=80:return "C"
+      elif self.avg>60 and self.avg<=70:return "D"
+      else:return "FAIL"
+   def display_res(self):
+      print("the mark is :",self.mark)
+      print(f"the grade is : {self.grade}")
+      print("*"*20)
+students=[]
+ns=int(input("enter the number of the students"))
+nm=int(input("enter the number of the marks"))
+for i in range(ns):
+   print("THE STUDENT DETAILS")
+   name=input("enter the name")
+   rollno=input("enter the rollno")
+   department=input("enter your department")
+   cls=input("enter your clss and year")
+   mark=[]
+   for j in range(nm):
+      m1=float(input(f"enter the marks for {j+1}"))
+      mark.append(m1)
+   res=Result(mark)
+   s1=Student(name,rollno,department,cls,res)
+   students.append(s1)
+for s1 in students:
+   s1.display()
+----------------------------------------------------------------------------------------
+class Person:
+    def __init__(self, name, roll, dep):
+        self.name = name
+        self.roll = roll
+        self.dep = dep
+
+    def display(self):
+        print("Name of student:", self.name)
+        print("Roll no:", self.roll)
+        print("Department:", self.dep)
+
+
+class Student(Person):
+    def __init__(self, name, roll, dep, marks):
+        super().__init__(name, roll, dep)
+        self.marks = marks
+        self.avg = self.calculate_avg()
+
+    def calculate_avg(self):
+        return sum(self.marks) / len(self.marks) if self.marks else 0
+
+    def display_marks(self):
+        print("MARKS:", self.marks)
+        print("AVERAGE:", self.avg)
+
+
+class Result(Student):
+    def __init__(self, name, roll, dep, marks):
+        super().__init__(name, roll, dep, marks)
+        self.grade = self.calculate_grade()
+
+    def calculate_grade(self):
+        if self.avg >= 90:
+            return 'A'
+        elif 80 < self.avg < 90:
+            return 'B'
+        elif 70 < self.avg < 80:
+            return 'C'
+        elif 60 < self.avg < 70:
+            return 'D'
+        else:
+            return 'F'
+
+    def display(self):
+        super().display()  # Call the display method of Person
+        print("GRADE:", self.grade)
+
+
+students = []
+n = int(input("Enter number of Students: "))
+m = int(input("Enter number of marks: "))
+for i in range(n):
+    name = input("Enter name: ")
+    roll = int(input("Enter roll no: "))
+    dep = input("Enter department: ")
+    marks = []
+    for j in range(m):
+        m1 = int(input(f"Enter mark {j + 1}: "))
+        marks.append(m1)
+    s1 = Result(name, roll, dep, marks)
+    students.append(s1)
+
+for s1 in students:
+    s1.display_marks()
+    s1.display()
+
+---------------------------------------------------------------------------------------
