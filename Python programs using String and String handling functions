@@ -1,0 +1,75 @@
+while True:
+   print("Menu")
+   print("1.upper\n2.swap\n3.frequency\n4.vowel\n5.words\n6.password\n7.exit")
+   choice=int(input("enter your choice"))
+   if choice==1:
+      a=input("enter a string")
+      result=""
+      lower="abcdefghijklmnopqrstuvwxyz"
+      upper="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+      for i in a:
+          if i in lower:
+              result+=upper[lower.index(i)]
+          else:
+              result+=i
+      print("uppercase string",result)
+
+   elif choice==2:
+      s1=input("enter string 1:")
+      s2=input("enter string 2:")
+      m1=s2[0]+s1[1:]
+      m2=s1[0]+s2[1:]
+      print(m1,m2)
+
+   elif choice==3:
+      s=input("enter a string")
+      freq={}
+      for char in s:
+          if char in freq:
+              freq[char]+=1
+          else:
+              freq[char]=1
+      print(freq)
+
+   elif choice==4:
+     A=input("enter a string")
+     v1="aeiou AEIOU"
+     c,v=0,0
+     for i in A:
+         if i in v1:
+             v+=1
+         else:
+             c+=1
+     print("vowels:",v)
+     print("consonants:",c)
+
+   elif choice==5:
+       w=input("enter a list of words:")
+       s=w.split()
+       for i in s:
+           if len(i)>5:
+               print(i)
+   elif choice==6:
+      pas=input("enter password")
+      upper=False
+      lower=False
+      special_character=False
+      digits=False
+      for i in pas:
+          if i.isupper():
+              upper=True
+          elif i.islower():
+              lower=True
+          elif i.isdigit():
+              digits=True
+          else:
+              special_character=True
+      if(len(pas)>=8 and upper and lower and digits and special_character):
+          print("valid.password")
+      else:
+          print("invalid password")
+   elif choice==7:
+       print("exit")
+       break
+   else:
+       print("invalid choice")
