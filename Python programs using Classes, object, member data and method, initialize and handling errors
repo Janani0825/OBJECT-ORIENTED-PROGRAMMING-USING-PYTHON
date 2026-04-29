@@ -1,212 +1,337 @@
-class Employee:
-   def __init__(self,name,emid,age,designation,sy):
-      self.name=name
-      self.emid=emid
-      self.age=age
-      self.designation=designation
-      self.sy=sy
-   def display_emp(self):
-      print("*"*20)
-      print(f"The employee name is {self.name}")
-      print(f"The age is {self.age}")
-      print(f"The id is {self.emid}")
-      print(f"The designation is {self.designation}")
-      self.sy.display_salary()
-class Salary:
-   def __init__(self,bp):
-      self.bp=bp
-      self.totalsal=self.calculate()
-   def calculate(self):
-      self.hra=0.1*self.bp
-      self.da=0.2*self.bp
-      self.pf=0.05*self.bp
-      return(self.bp+self.hra+self.da-self.pf)
-   def display_salary(self):
-      print(f"the basic pay is {self.bp}")
-      print(f"the salary is {self.totalsal}")
-employee=[]
-n=int(input("enter the no of employee"))
-for i in range(n):
-   print("the employee details")
-   name=input(f"enter the name of {i+1} employee")
-   emid=input("enter the id")
-   age=input("enter the age")
-   designation=input("enter the designation")
-   bp=int(input("enter the basic pay"))
-   sy=Salary(bp)
-   e1=Employee(name,emid,age,designation,sy)
-   employee.append(e1)
-for e1 in employee:
-   e1.display_emp()
--------------------------------------------------------------------------------------
-class Customer:
-   def __init__(self,account_no,accountholder_name,mobno):
-      self.account_no=account_no
-      self.accountholder_name=accountholder_name
-      self.mobno=mobno
-   def display_customer(self):
-      print("Account number :",self.account_no)
-      print("Account holder name :",self.accountholder_name)
-      print("Account holder's mobile number: ",self.mobno)
-class Transaction(Customer):
-   def __init__(self,account_no,accountholder_name,mobno,balance):
-      super().__init__(account_no,accountholder_name,mobno)
-      self.balance=balance
-      self.deposit=self.depositcalculate()
-      self.withdraw=self.withdrawcalculate()
-      self.check_balance=self.check_balance()
-   def depositcalculate(self):
-      self.amount=float(input("Enter the amount to be deposited:"))
-      if self.amount<=0:
-          print("Deposit amount should be positive")
-      else:
-          self.balance+=self.amount
-          print("RS",self.amount)
-          print("Deposited successfully")
-          print("NEW BALANCE : RS",self.balance)
-   def withdrawcalculate(self):
-       self.amount1=float(input("Enter the amount to be withdrawn:"))
-       if self.amount1>self.balance:
-           print("INSUFFICIENT FUND")
-       else:
-           self.balance-=self.amount1
-           print("RS:",self.amount)
-           print("Withdrawn succesfully")
-           print("NEW BALANCE : RS",self.balance)
-   def check_balance(self):
-      print("Account balance: RS",self.balance)
-   def display_transaction(self):
-      print("Account balance:",self.balance)
-
-n=int(input("Enter number of accounts to be created:"))
-accounts=[]
-for i in range(n):
-   print(">>>>>>>>BANK DETAILS<<<<<<<<<<<<<")
-   account_no=int(input("Enter the account number:"))
-   accountholder_name=input("Enter the account holder's name:")
-   mobno=int(input("Enter mobile number :"))
-   balance=float(input("Enter balance:"))
-   b1=Transaction(account_no,accountholder_name,mobno,balance)
-   accounts.append(b1)
-for b1 in accounts:
-   print("----------------------------------")
-   b1.display_customer()
-   b1.display_transaction()
-------------------------------------------------------------------------------------------
 class Student:
-   def __init__(self,name,rollno,department,cls,mark):
-      self.name=name
-      self.rollno=rollno
-      self.department=department
-      self.cls=cls
-      self.mark=mark
-   def display(self):
-      print("*"*20)
-      print(f"the name is {self.name}")
-      print(f"the rollno is {self.rollno}")
-      print(f"the department is {self.department}")
-      print(f"the class {self.cls}")
-      self.mark.display_res()
-class Result:
-   def __init__(self,mark):
-      self.mark=mark
-      self.avg = self.calculate()
-      self.grade =self.grade()
-   def calculate(self):
-      return (sum(self.mark)/len(self.mark))
-   def grade(self):
-      if self.avg>90: return "A"
-      elif self.avg >80 and self.avg<=90:return "B"
-      elif self.avg>70 and self.avg<=80:return "C"
-      elif self.avg>60 and self.avg<=70:return "D"
-      else:return "FAIL"
-   def display_res(self):
-      print("the mark is :",self.mark)
-      print(f"the grade is : {self.grade}")
-      print("*"*20)
-students=[]
-ns=int(input("enter the number of the students"))
-nm=int(input("enter the number of the marks"))
-for i in range(ns):
-   print("THE STUDENT DETAILS")
-   name=input("enter the name")
-   rollno=input("enter the rollno")
-   department=input("enter your department")
-   cls=input("enter your clss and year")
-   mark=[]
-   for j in range(nm):
-      m1=float(input(f"enter the marks for {j+1}"))
-      mark.append(m1)
-   res=Result(mark)
-   s1=Student(name,rollno,department,cls,res)
-   students.append(s1)
-for s1 in students:
-   s1.display()
-----------------------------------------------------------------------------------------
-class Person:
-    def __init__(self, name, roll, dep):
+    num_subjects = 5
+    total_students = 0
+
+    def __init__(self, roll_no, name, marks):
+        self.roll_no = roll_no
         self.name = name
-        self.roll = roll
-        self.dep = dep
-
-    def display(self):
-        print("Name of student:", self.name)
-        print("Roll no:", self.roll)
-        print("Department:", self.dep)
-
-
-class Student(Person):
-    def __init__(self, name, roll, dep, marks):
-        super().__init__(name, roll, dep)
         self.marks = marks
-        self.avg = self.calculate_avg()
-
-    def calculate_avg(self):
-        return sum(self.marks) / len(self.marks) if self.marks else 0
-
-    def display_marks(self):
-        print("MARKS:", self.marks)
-        print("AVERAGE:", self.avg)
-
-
-class Result(Student):
-    def __init__(self, name, roll, dep, marks):
-        super().__init__(name, roll, dep, marks)
+        self.total = sum(marks)
+        self.average = self.total / len(marks)
         self.grade = self.calculate_grade()
+        Student.total_students += 1
 
     def calculate_grade(self):
-        if self.avg >= 90:
+        if self.average >= 90:
+            return 'A+'
+        elif self.average >= 80:
             return 'A'
-        elif 80 < self.avg < 90:
+        elif self.average >= 70:
             return 'B'
-        elif 70 < self.avg < 80:
+        elif self.average >= 60:
             return 'C'
-        elif 60 < self.avg < 70:
+        elif self.average >= 50:
             return 'D'
         else:
             return 'F'
 
-    def display(self):
-        super().display()  # Call the display method of Person
-        print("GRADE:", self.grade)
+    def display_details(self):
+        print(f"Roll No: {self.roll_no}")
+        print(f"Name: {self.name}")
+        print(f"Total: {self.total}")
+        print(f"Average: {self.average:.2f}")
+        print(f"Grade: {self.grade}")
+        print("-" * 30)
 
+    @staticmethod
+    def get_total_students():
+        return Student.total_students
+
+def get_student_details():
+    roll_no = input("Enter roll number: ")
+    name = input("Enter student name: ")
+    marks = list(map(int, input("Enter the marks separated by space: ").split()))
+    return Student(roll_no, name, marks)
 
 students = []
-n = int(input("Enter number of Students: "))
-m = int(input("Enter number of marks: "))
-for i in range(n):
-    name = input("Enter name: ")
-    roll = int(input("Enter roll no: "))
-    dep = input("Enter department: ")
-    marks = []
-    for j in range(m):
-        m1 = int(input(f"Enter mark {j + 1}: "))
-        marks.append(m1)
-    s1 = Result(name, roll, dep, marks)
-    students.append(s1)
+num_students = int(input("Enter number of students: "))
+for _ in range(num_students):
+    student = get_student_details()
+    students.append(student)
+print("*******************")
+print("\nSTUDENT DETAILS:")
+print("*******************")
+for student in students:
+    student.display_details()
 
-for s1 in students:
-    s1.display_marks()
-    s1.display()
+print(f"Total number of Students: {Student.get_total_students()}")
 
----------------------------------------------------------------------------------------
+[24bcs077@mepcolinux ex5]$python3 stud.py
+Enter number of students: 2
+Enter roll number: 24
+Enter student name: janani
+Enter the marks separated by space: 90 90 90 90 90
+Enter roll number: 25
+Enter student name: rugi
+Enter the marks separated by space: 80 80 80 80 80
+*******************
+
+STUDENT DETAILS:
+*******************
+Roll No: 24
+Name: janani
+Total: 450
+Average: 90.00
+Grade: A+
+------------------------------
+Roll No: 25
+Name: rugi
+Total: 400
+Average: 80.00
+Grade: A
+------------------------------
+Total number of Students: 2
+[24bcs077@mepcolinux ex5]$cat emp.py
+class Employee:
+   MAX=10
+   total_emp=0
+   def __init__(self):
+      if Employee.total_emp>Employee.MAX:
+         print("Cannot add more than 10 employees...")
+         return
+      Employee.total_emp+=1
+      self.name=input("Enter employee name:")
+      self.empid=input("Enter employee id:")
+      self.basic=float(input("Enter basic pay:"))
+      self.hra=float(input("Enter hra:"))
+      self.da=float(input("Enter da:"))
+      self.pf=float(input("Enter pf:"))
+   def calculate(self):
+      return self.basic+self.hra+self.da-self.pf
+   def display_details(self):
+      print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+      print(f"Employee name:{self.name}")
+      print(f"Employee id:{self.empid}")
+      print(f"Total salary:${self.calculate():.2f}")
+   @staticmethod
+   def total():
+      return Employee.total_emp
+n = int(input("Enter the number of employees you want to create: "))
+employees = []
+for _ in range(n):
+    print(f"Entering details for employee {_ + 1}:")
+    emp = Employee()
+    employees.append(emp)
+print("------------------------------------------")
+print(f"Total Employees:{Employee.total()}")
+print("------------------------------------------")
+print("Employee Details:")
+for emp in employees:
+    emp.display_details()
+print("-------------------------------------------")
+
+-------------------------------------------------------------------------------------------------------------------------------------
+class Shoppingbill:
+    TAX_RATE = 0.05
+    total_bills_created = 0
+
+    def __init__(self):
+        self.items = {}
+        self.total_amount = 0
+        self.get_items()
+        self.total_with_tax = self.calculate_total()
+        Shoppingbill.total_bills_created +=1
+
+    def get_items(self):
+        num_items = int(input("Enter number of items: "))
+        for i in range(num_items):
+            item_name = input(f"Enter the name of item {i + 1}: ")
+            quantity = float(input(f"Enter quantity for {item_name}: "))
+            price = float(input(f"Enter price for {item_name}: "))
+            self.items[item_name] = price * quantity
+            self.total_amount += price * quantity
+
+    def calculate_total(self):
+        return self.total_amount + (self.total_amount * Shoppingbill.TAX_RATE)
+
+    def display_bill(self):
+        print("----------------")
+        print("\nSHOPPING BILLl")
+        print("----------------")
+        for item, cost in self.items.items():
+            print(f"{item}: ${cost:.2f}")
+        print(f"Total bill (including tax): ${self.total_with_tax:.2f}")
+        print(f"Total bills created: {Shoppingbill.total_bills_created}")
+
+    @staticmethod
+    def calculate_discount(amount, discount_percentage):
+        discount = amount * (discount_percentage / 100)
+        return amount - discount
+bill = Shoppingbill()
+bill.display_bill()
+discount_percentage = float(input("Enter discount percentage: "))
+discounted_total = Shoppingbill.calculate_discount(bill.total_with_tax, discount_percentage)
+print(f"Total after {discount_percentage}% discount: ${discounted_total:.2f}")
+---------------------------------------------------------------------------------------------------
+class InsufficientFundsException(Exception):
+    def __init__(self, message="WITHDRAW FAILED: INSUFFICIENT FUNDS!"):
+        self.msg = message
+
+class MinimumBalanceException(Exception):
+    def __init__(self, message="WITHDRAW FAILED: MINIMUM BALANCE RS 500 REQUIRED!"):
+        self.msg = message
+
+class BankAccount:
+    def __init__(self, account_holder, balance, address, mobile_number):
+        self.account_holder = account_holder
+        self.balance = balance
+        self.address = address
+        self.mobile_number = mobile_number
+
+    def deposit(self, amount):
+        if amount <= 0:
+            print("Deposit amount should be positive.")
+        else:
+            self.balance += amount
+            print("RS", amount, "deposited successfully! New balance: RS", self.balance)
+
+    def withdraw(self, amount):
+        if amount > self.balance:
+            raise InsufficientFundsException()
+        elif self.balance - amount < 500:
+            raise MinimumBalanceException()
+        else:
+            self.balance -= amount
+            print("RS", amount, "withdrawn successfully! Remaining balance: RS", self.balance)
+
+    def check_balance(self):
+        print("Account balance: RS", self.balance)
+
+    def account_info(self):
+        print("Account Holder:", self.account_holder)
+        print("Address:", self.address)
+        print("Mobile Number:", self.mobile_number)
+
+
+try:
+    n = int(input("Enter the number of accounts to create: "))
+    accounts = []
+
+    for i in range(n):
+        print(f"\nEntering details for account {i + 1}:")
+        account_holder = input("Enter account holder's name: ")
+        balance = float(input("Enter initial balance: "))
+        address = input("Enter address: ")
+        mobile_number = input("Enter mobile number: ")
+
+        account = BankAccount(account_holder, balance, address, mobile_number)
+        accounts.append(account)
+
+    print("\nBANKING SYSTEM INITIALIZED!")
+
+
+    for account in accounts:
+        account.account_info()
+        account.check_balance()
+
+        deposit_amount = float(input(f"Enter amount to deposit for {account.account_holder}: "))
+        account.deposit(deposit_amount)
+
+        withdraw_amount = float(input(f"Enter amount to withdraw for {account.account_holder}: "))
+        account.withdraw(withdraw_amount)
+
+except InsufficientFundsException as e:
+    print("Exception:", e.msg)
+except MinimumBalanceException as e:
+    print("Exception:", e.msg)
+except ValueError:
+    print("INVALID INPUT! PLEASE ENTER A VALID NUMBER")
+[24bcs077@mepcolinux ex5]$python3 bank.py
+Enter the number of accounts to create: 1
+
+Entering details for account 1:
+Enter account holder's name: zafar
+Enter initial balance: 1000
+Enter address: 25
+Enter mobile number: 8526038167
+
+BANKING SYSTEM INITIALIZED!
+Account Holder: zafar
+Address: 25
+Mobile Number: 8526038167
+Account balance: RS 1000.0
+Enter amount to deposit for zafar: -200
+Deposit amount should be positive.
+Enter amount to withdraw for zafar: 1000
+Exception: WITHDRAW FAILED: MINIMUM BALANCE RS 500 REQUIRED!
+[24bcs077@mepcolinux ex5]$cat park.py
+class AgeRestrictionException(Exception):
+    def __init__(self, message="You are not allowed to ride."):
+        self.message = message
+
+class ThemePark:
+    def __init__(self):
+        self.allowed_rides = []
+
+    def check_ride_eligibility(self, age):
+        if age < 10:
+            raise AgeRestrictionException("You must be at least 10 years old to ride certain rides.")
+        elif age > 60:
+            raise AgeRestrictionException("You are not allowed to ride any rides.")
+        else:
+            self.allowed_rides = ["Roller Coaster", "Ferris Wheel", "Bumper Cars"]
+            return self.allowed_rides
+
+
+try:
+    n = int(input("Enter the number of individuals to check for ride eligibility: "))
+    theme_park = ThemePark()
+
+    for i in range(n):
+        print(f"\nEntering details for individual {i + 1}:")
+        name = input("Enter Name: ")
+        age = int(input("Enter Age: "))
+
+
+        try:
+            allowed_rides = theme_park.check_ride_eligibility(age)
+            print(f"{name} (Age: {age}) is allowed to ride: {', '.join(allowed_rides)}")
+        except AgeRestrictionException as e:
+            print(f"{name} (Age: {age}) - {e.message}")
+
+except ValueError:
+    print("INVALID INPUT! PLEASE ENTER A VALID NUMBER")
+---------------------------------------------------------------------------------------------
+class InvalidInputException(Exception):
+    def __init__(self, message="INVALID INPUT!"):
+        self.msg = message
+
+class MessBill:
+    def __init__(self, id, name, department, no_of_days, veg_days, nonveg_days):
+        self.id = id
+        self.name = name
+        self.department = department
+        self.no_of_days = no_of_days
+        self.veg_days = veg_days
+        self.nonveg_days = nonveg_days
+        self.veg_cost_per_day = 50
+        self.nonveg_cost_per_day = 70
+
+    def calculate_bill(self):
+       if self.no_of_days < 0 or self.veg_days < 0 or self.nonveg_days < 0:
+            raise InvalidInputException("Days cannot be negative.")
+       if self.veg_days + self.nonveg_days > self.no_of_days:
+            raise InvalidInputException("Total meal days exceed the number of days.")
+       total_bill = (self.veg_days * self.veg_cost_per_day) + (self.nonveg_days * self.nonveg_cost_per_day)
+       return total_bill
+
+
+try:
+    n = int(input("Enter the number of individuals for mess bill calculation: "))
+    for i in range(n):
+        print(f"\nEntering details for individual {i + 1}:")
+        id = input("Enter ID: ")
+        name = input("Enter Name: ")
+        department = input("Enter Department: ")
+        no_of_days = int(input("Enter number of days: "))
+        veg_days = int(input("Enter number of veg days: "))
+        nonveg_days = int(input("Enter number of non-veg days: "))
+
+        mess_bill = MessBill(id, name, department, no_of_days, veg_days, nonveg_days)
+        total_bill = mess_bill.calculate_bill()
+        print(f"Total mess bill for {name} (ID: {id}, Department: {department}) is: RS {total_bill:.2f}")
+
+except InvalidInputException as e:
+    print("Exception:", e.msg)
+except ValueError:
+    print("INVALID INPUT! PLEASE ENTER A VALID NUMBER")
