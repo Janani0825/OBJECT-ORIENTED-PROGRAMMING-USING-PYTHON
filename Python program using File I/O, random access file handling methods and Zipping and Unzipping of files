@@ -1,0 +1,105 @@
+import os
+file_name="bookdata.txt"
+def write_books():
+    with open(file_name,"w")  as f:
+        f.write("Bookid\ttitle\tauthor\tprice\n")
+        f.write("402\tpython\tbala\t150\n")
+        f.write("106\t400days\tchatenbhagat\t480\n107\thow to kill your family\tbella mackie\t150\n108\talchemist\tpaulochoelho\t399")
+    print("BOOKS WRITTEN")
+def read_books():
+    if not os.path.exists(file_name):
+        print("file does not exist")
+        return
+    with open(file_name,"r") as f:
+        print("current position",f.tell())
+        content=f.read()
+        print(content)
+        print("file position",f.tell())
+def test_seek():
+    with open(file_name,"r") as f:
+        p=int(input("Enter the position:"))
+        f.seek(p)
+        line=f.readline()
+        print(line)
+while True:
+   print("\tMENU")
+   print("1.write\n2.Read\n3.seek\n4.Exit")
+   ch=int(input("enter your choice"))
+   if ch==1:
+      write_books()
+   elif ch==2:
+      read_books()
+   elif ch==3:
+      test_seek()
+   elif ch==4:
+      break;
+   else:
+      print("Invalid choice")
+
+---------------------------------------------------------------------------------------
+import csv
+with open ("emp.csv","w",newline='') as f :
+   w=csv.writer(f)
+   w.writerow(["ENO","ENAME","ESAL","EADDR"])
+   n=int(input("enter no of employess:"))
+   for i in range(n):
+      eno=int(input("employee no:"))
+      ename=input("enter employee name:")
+      esal=float(input("enter salary:"))
+      eaddr=input("enter employee address:")
+      w.writerow([eno,ename,esal,eaddr])
+print("employees data written to csv file successsfully")
+with open("emp.csv","r",newline='')as f:
+   reader=csv.reader(f)
+   header=next(reader)
+   max_salary=0
+   top_employeee=[]
+   for row in reader:
+      salary=float(row[2])
+      if salary>max_salary:
+         max_salary=salary
+         top_employee=row
+   if top_employee:
+      print("employee with highest salary:")
+      print("employee no:",top_employee[0])
+      print("employee name:",top_employee[1])
+      print("employee salary:",top_employee[2])
+      print("employee adress:",top_employee[3])
+   else:
+      print("no valid employee data found")
+-----------------------------------------------------------------------------
+import os,sys
+fn=input("Enter file name : ")
+if os.path.isfile(fn):
+   print("File exists : ",fn)
+   f=open(fn,"r")
+else:
+   print("File does not exists : ",fn)
+   sys.exit(0)
+lc=wc=cc=0
+for l in f:
+   lc=lc+1
+   cc=cc+len(l)
+   w=l.split()
+   wc=wc+len(w)
+print("Number of lines count      : ",lc)
+print("Number of words count      : ",wc)
+print("Number of characters count : ",cc)
+---------------------------------------------------------------------------
+from zipfile import *
+f=ZipFile("f.zip","w",ZIP_DEFLATED)
+f.write("f1.txt")
+f.write("f2.txt")
+f.write("f3.txt")
+f.close()
+print("f.zip file created successfully.")
+-------------------------------------------------------------------------
+from zipfile import *
+f=ZipFile("f.zip","r",ZIP_STORED)
+n=f.namelist()
+for n1 in n:
+   print("File Name : ",n1)
+   print("File Data : ")
+   f1=open(n1,'r')
+   print(f1.read())
+   print()
