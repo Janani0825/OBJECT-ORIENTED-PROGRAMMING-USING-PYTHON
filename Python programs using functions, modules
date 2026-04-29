@@ -1,0 +1,160 @@
+def add(x,y):
+    return x+y
+def subtract(x,y):
+    return x-y
+def multiply(x,y):
+    return x*y
+def divide(x,y):
+    if y==0:
+        return "Error in division"
+    return x/y
+print("select the operation\n1.Add\n2.subtract\n3.multiply\n4.divide")
+c=int(input("ENTER THE CHOICE(1/2/3/4):"))
+num1=float(input("Enter a num1:"))
+num2=float(input("Enter a num2:"))
+if c==1:
+    print(f"The result is:{add(num1,num2)}")
+elif c==2:
+    print(f"The result is:{subtract(num1,num2)}")
+elif c==3:
+    print(f"The result is:{multiply(num1,num2)}")
+elif c==4:
+    print(f"The result is:{divide(num1,num2)}")
+else:
+    print("Invalid choice")
+----------------------------------------------------------------------------------------------
+def calculate_bill(items):
+    total = sum(item[1] * item[2] for item in items)
+    return total
+items = []
+for i in range(4):
+    name = input(f"Enter the name of item {i + 1}: ")
+    price = float(input(f"Enter the price of {name}: "))
+    quantity = int(input(f"Enter the quantity of {name}: "))
+    items.append((name, price, quantity))
+final_total = calculate_bill(items)
+print("\n\t--- Shopping Cart Bill ---")
+print("{:<20} {:>10} {:>10} {:>10}".format("Item", "Price (₹)", "Quantity", "Total (₹)"))
+print("-"*50)
+for item in items:
+    total = item[1] * item[2]
+    print("{:<20} {:>10.2f} {:>10} {:>10.2f}".format(item[0], item[1], item[2], total))
+print("-"*55)
+print("{:<20} {:>30.2f}".format("Final Total (₹)", final_total))
+print("-"*55)
+
+----------------------------------------------------------------------------------------------
+def factorial(n):
+   if n==0 or n==1:
+      return 1
+   return n*factorial(n-1)
+def factorial_of_range(start,end):
+   for i in range(start,end+1):
+      print(f"factorial of{i}={factorial(i)}")
+start_range=int(input("Enter the start of the range:"))
+end_range=int(input("Enter the end of the range:"))
+factorial_of_range(start_range,end_range)
+
+--------------------------------------------------------------------------------------------------
+def power(base,exponent):
+   if exponent==0:
+      return 1
+   return base*power(base,exponent-1)
+base=int(input("Enter the base"))
+exponent=int(input("Enter the exponent:"))
+result=power(base,exponent)
+print(f"{base} to the power of {exponent} is {result}")
+--------------------------------------------------------------------------------------------------
+def fibonacci(n):
+   if n<=1:
+      return n
+   return fibonacci(n-1)+fibonacci(n-2)
+terms=int(input("Enter the number of terms upto which you want:"))
+print("Fibonacci series:")
+for i in range (terms):
+    print(fibonacci(i))
+--------------------------------------------------------------------------------------------------
+import math
+import random
+def calculator():
+    print("Simple Calculator using Math Module")
+    print("Random Numbers will be generated between 1 and 100")
+    num1, num2 = math.ceil(random.random() * 100), math.ceil(random.random() * 100)
+    print(f"Generated Random Numbers: {num1}, {num2}")
+    operation = input("Choose operation (+, -, *, /): ")
+
+    if operation == '+':
+        print(f"Result: {math.fsum([num1, num2])}")
+    elif operation == '-':
+        print(f"Result: {num1 - num2}")
+    elif operation == '*':
+        print(f"Result: {num1 * num2}")
+    elif operation == '/' and num2 != 0:
+        print(f"Result: {num1 / num2}")
+    else:
+        print("Invalid operation or division by zero.")
+
+calculator()
+--------------------------------------------------------------------------------------------------
+import math
+
+def area_circle(radius):
+    return math.pi * math.pow(radius, 2)
+
+def area_rectangle(length, width):
+    return length * width
+
+def area_triangle(base, height):
+    return 0.5 * base * height
+
+
+import math
+
+def volume_sphere(radius):
+    return (4 / 3) * math.pi * math.pow(radius, 3)
+
+def volume_cube(side):
+    return math.pow(side, 3)
+
+def volume_cylinder(radius, height):
+    return math.pi * math.pow(radius, 2) * height
+
+import shapes_2d
+import shapes_3d
+
+def main():
+    print("Choose a calculation:")
+    print("1.Circle")
+    print("2.Rectangle")
+    print("3.Triangle")
+    print("4.Sphere")
+    print("5.Cube")
+    print("6.Cylinder")
+
+    choice = input("Enter your choice (1-6): ")
+
+    if choice == '1':
+        radius = float(input("radius: "))
+        print(f"Area: {shapes_2d.area_circle(radius)}")
+    elif choice == '2':
+        length = float(input("length: "))
+        width = float(input("width: "))
+        print(f"Area: {shapes_2d.area_rectangle(length, width)}")
+    elif choice == '3':
+        base = float(input("base: "))
+        height = float(input("height: "))
+        print(f"Area: {shapes_2d.area_triangle(base, height)}")
+    elif choice == '4':
+        radius = float(input("radius: "))
+        print(f"Volume: {shapes_3d.volume_sphere(radius)}")
+    elif choice == '5':
+        side = float(input("side:"))
+        print(f"Volume: {shapes_3d.volume_cube(side)}")
+    elif choice == '6':
+        radius = float(input("radius: "))
+        height = float(input("height: "))
+        print(f"Volume: {shapes_3d.volume_cylinder(radius, height)}")
+    else:
+        print("Invalid choice!")
+main()
+
