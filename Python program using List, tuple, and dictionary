@@ -1,0 +1,251 @@
+while True:
+   print("-------------------------------------------------------------")
+   print("\tMENU")
+   print("1.List Operations")
+   print("2.Second largest element")
+   print("3.Product of list elements")
+   print("4.Frequency Generator")
+   print("5.Exiting the program")
+   print("--------------------------------------------------------------")
+   choice=int(input("Enter the choice:"))
+   if choice==1:
+      mylist=[2,8,10,6,12,4]
+      while True:
+         print("MENU")
+         print("1.Append")
+         print("2.Delete")
+         print("3.Insert")
+         print("4.Maximum and minimum")
+         print("5.Exit")
+         ch=int(input("Enter the choice:"))
+         if ch==1:
+            n=int(input("Enter the element to append:"))
+            mylist.append(n)
+            print("Updated List:",mylist)
+         elif ch==2:
+            n=int(input("Entr an element to delete:"))
+            if n in mylist:
+               mylist.remove(n)
+            print("Updated list:",mylist)
+         elif ch==3:
+            n=int(input("Enter an element to insert:"))
+            pos=int(input("Enter position:"))
+            mylist.insert(pos,n)
+            print("Updated list:",mylist)
+         elif ch==4:
+            print("Maximum element:",max(mylist))
+            print("Minimum element:",min(mylist))
+         else:
+            print("Exiting the list operations...")
+            break
+   elif choice==2:
+      num=list(map(int,input("Enter numbers seperated by space:").split()))
+      unique=list(set(num))
+      unique.sort(reverse=True)
+      if len(unique)>1:
+         print("Second largest number:",unique[1])
+      else:
+         print("No elements")
+   elif choice==3:
+      num=list(map(int,input("Enter numbers seperated by space:").split()))
+      product=1
+      for i in num:
+         product*=i
+      print("Product of list elements:",product)
+   elif choice==4:
+      n=list(map(int,input("Enter numbers seperated by space:").split()))
+      freq=int(input("Enter the required frequency:"))
+      result=[num for num in set(n) if n.count(num)==freq]
+      print("Elements with frequency",freq,":",result)
+   elif choice==5:
+      print("Exiting the program")
+      break
+   else:
+      print("Invalid choice...")
+
+--------------------------------------------------------------------------
+while(True):
+   print("-----------------------------------")
+   print("\tMENU")
+   print("-----------------------------------")
+   print("1.Set operations")
+   print("2.Occurences")
+   print("3.Missing an extra element")
+   print("4.Exit")
+   print("-----------------------------------")
+   choice=int(input("Enter a choice:"))
+   if choice==1:
+      set1=set(map(int,input("Enter first set seperated by space:").split()))
+      set2=set(map(int,input("Enter second set seperated by space:").split()))
+      while True:
+         print("\tMenu")
+         print("1.Union")
+         print("2.Intersection")
+         print("3.Difference")
+         print("4.Symmetric Difference")
+         print("5.Exit")
+         ch=int(input("Enter your choice:"))
+         if ch==1:
+            print("Union:",set1|set2)
+         elif ch==2:
+            print("Intersection:",set1&set2)
+         elif ch==3:
+            print("Difference:",set1-set2)
+         elif ch==4:
+            print("Symmetric Difference:",set1^set2)
+         elif ch==5:
+            print("Exiting the program...")
+            break
+         else:
+            print("Invalid choice")
+   elif choice==2:
+      words=list(input("Enter elements seperated by space:").split())
+      occurences={word + ":" + str(words.count(word)) for word in set(words)}
+      print(occurences)
+   elif choice==3:
+      set1=set(map(int,input("Enter elements of first set seperated by space:").split()))
+      set2=set(map(int,input("Enter elements of second set seperated by space:").split()))
+      missing=set2-set1
+      extra=set1-set2
+      print("Missing elements in set1:",missing)
+      print("Extra elements in set2:",extra)
+   elif choice==4:
+      print("Exiting the program....")
+      break
+   else:print("Invalid choice...")
+
+-------------------------------------------------------------------------------------------------
+print("\nMain Menu\n")
+print("1.Length\n2.Occurance\n3.Index\n4.Sort\n5.Minimum\n6.Maximum\n")
+ch=int(input("Enter your choice:"))
+while ch!=7:
+   if ch==1:
+      t=tuple(input("Enter a tuple:"))
+      t1=len(t)
+      print("Length:",t1)
+      ch=int(input("Enter your choice:"))
+   if ch==2:
+      t=eval(input("Enter a tuple:"))
+      a=int(input("Enter the element to count:"))
+      t1=t.count(a)
+      print("Count:",t1)
+      ch=int(input("Enter your choice:"))
+   if ch==3:
+      t=eval(input("Enter a tuple:"))
+      a=int(input("Enter the element for indexing:"))
+      t1=t.index(a)
+      print("Index:",t1)
+      ch=int(input("Enter your choice:"))
+   if ch==4:
+      t=eval(input("Enter a tuple:"))
+      t1=sorted(t)
+      print("Sorted tuple:",t1)
+      ch=int(input("Enter your choice:"))
+   if ch==5:
+      t=eval(input("Enter a tuple:"))
+      t1=min(t)
+      print("Minimum:",t1)
+      ch=int(input("Enter your choice:"))
+   if ch==6:
+      t=eval(input("Enter a tuple:"))
+      t1=max(t)
+      print("Maximum:",t1)
+      ch=int(input("Enter your choice:"))
+
+--------------------------------------------------------------------------------
+print("\nMain Menu\n")
+print("1.Cube of the tuple\n2.Row and Column wise sum\n")
+ch=int(input("Enter your choice:"))
+while ch!=3:
+   if ch==1:
+      t=eval(input("Enter a tuple:"))
+      res=[(i,i**3)for i in t]
+      print("Result:",res)
+      ch=int(input("Enter your choice:"))
+   if ch==2:
+      matrix=((1,2,3),(4,5,6),(7,8,9))
+      row_sums=tuple(sum(row)for row in matrix)
+      column_sums=tuple(sum(matrix[row][col]for row in range(len(matrix)))for col in range(len(matrix[0])))
+      print("Matrix:")
+      for row in matrix:
+         print(row)
+      print("Row wise sum:",row_sums)
+      print("Column wise sum:",column_sums)
+      ch=int(input("Enter your choice:"))
+-----------------------------------------------------------------------------------------------
+print("\nMain Menu\n")
+print("1.Length\n2.Get\n3.Pop\n4.Keys\n5.Values\n6.Items\n7.Copy\n")
+ch=int(input("Enter your choice:"))
+while ch!=8:
+   if ch==1:
+      d=eval(input("Enter the dictionary:"))
+      d1=len(d)
+      print("Length:",d1)
+      ch=int(input("Enter your choice:"))
+   if ch==2:
+      d=eval(input("Enter your dictionary:"))
+      a=input("Enter the key:")
+      d1=d.get(a)
+      print("Output:",d1)
+      ch=int(input("Enter your choice:"))
+   if ch==3:
+      d=eval(input("Enter your dictionary:"))
+      a=input("Enter the element to be poped:")
+      d1=d.pop(a)
+      print("Poped elements:",d)
+      ch=int(input("Enter your choice:"))
+   if ch==4:
+      d=eval(input("Enter the dictionary:"))
+      d1=d.keys()
+      print("Key elements:",d1)
+      ch=int(input("Enter your choice:"))
+   if ch==5:
+      d=eval(input("Enter the dictionary:"))
+      d1=d.values()
+      print("Values:",d1)
+      ch=int(input("Enter your choice:"))
+   if ch==6:
+      d=eval(input("Enter the dictionary:"))
+      d1=d.items()
+      for i,j in d1:
+         print(i,"=>",j)
+      ch=int(input("Enter your choice:"))
+   if ch==7:
+      d=eval(input("Enter the dictionary:"))
+      d1=d.copy()
+      print("Copied dict:",d1)
+      ch=int(input("Enter your choice:"))
+------------------------------------------------------------------------------------------
+print("\nMain Menu\n")
+print("1.Students grade\n2.No of occurance of each vowels\n")
+ch=int(input("Enter your choice:"))
+while ch!=3:
+   if ch==1:
+      x=int(input("Enter the number:"))
+      d={}
+      for i in range(x):
+         n=input("Enter the name:")
+         m=input("Enter the marks:")
+         d[n]=m
+      while True:
+         n=input("Enter the name to find marks:")
+         m=d.get(n,-1)
+         if m==-1:
+            print("Info not found")
+         else:
+            print(n,"=>",m)
+         opt=input("Do you want to find another info[Yes|No]")
+         if opt=="No":
+            break
+      print("Thank you ...")
+      ch=int(input("Enter your choice:"))
+   if ch==2:
+      w=input("Enter the string:")
+      v={'a','e','i','o','u'}
+      d={}
+      for a in w:
+         if a in v:
+            d[a]=d.get(a,0)+1
+      for i,j in sorted(d.items()):
+         print(i,"=>",j,"times")
+      ch=int(input("Enter your choice:"))
